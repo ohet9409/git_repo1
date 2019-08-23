@@ -31,7 +31,7 @@ public class Goods_boardController {
 	private Goods_boardService service;
 
 	// 웹 리스트용
-	@RequestMapping(value = "/goods/boardList.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/goods/boardList.do")
 	public ModelAndView boardList(HttpServletRequest request) {
 
 		String str_pg = request.getParameter("pg");

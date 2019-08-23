@@ -37,8 +37,7 @@
 		//alert("image0"+image0);
 		//alert("reply_count"+reply_count);
 		//alert("area "+ area);
-		//var image0 = "http://localhost:8098/hongdangmu/storage/" + image0;
-		var image0 = "http://192.168.0.61:8098/hongdangmu/storage/" + image0;
+		var image0 = "http://localhost:8098/hongdangmu/storage/" + image0;
 		var img = "img" + num;
 		//alert("img " + image0 + num);
 		var newArticle = $("<article>");
@@ -49,9 +48,11 @@
 
 		var new_DivI = $("<div>");
 		
-		new_DivI.html('<img src="'+image0+'" alt="이미지">');
+		new_DivI.html('<a href="http://192.168.0.61:8098/hongdangmu/goods/selectOne.jsp"><img src="'+image0+'" alt="이미지"></a>');
 		
-
+		//alert("test3");
+		//alert("test99");
+		
 		var new_Div2 = $("<div>");
 		new_Div2.addClass("card-desc");
 		var new_h2 = $("<h2>");
@@ -83,23 +84,17 @@
 		//$(".cards-wrap").append(new_Div2);
 	}
 	$(function() {
-		var url1 = 'http://192.168.0.61:8098/hongdangmu/goods/boardList.do';
-
-		alert(url1);
+		alert("test1");
 		$.ajax({
 			//url:"goods/boardList.do",
-			url : url1,
-			//url:url1,
-			//url : "http://192.168.0.61:8098/hongdangmu/goods/boardList.do",
+			url : "http://localhost:8098/hongdangmu/goods/boardList.do",
 			//url:"http://localhost:8099/hongdangmu/goods/boardList.do",
 			//contentType: 'application/json; charset=utf-8',
-			type : 'get',
-			/* data : {
+			type : "post",
+			data : {
 				"pg" : "1"
-			}, */
+			},
 			dataType : 'json',
-			//jsonp: 'callback',
-			jsonpCallback: 'myCollback',
 			success : function(json) {
 				// 배열까지 접근한다.
 				//var items = json.items;				
@@ -124,7 +119,7 @@
 				});
 			},
 			error : function(xhr, str) {
-				alert("test3 " + xhr.status+ ', ' + str);
+				alert("test3 " + xhr.status + ', ' + str);
 			}
 		});
 	});
@@ -146,8 +141,9 @@
 						name="header-search-input" id="header-search-input"
 						class="fixed-search-input" placeholder="지역, 상품, 업체등을 검색해보세요." />
 					<button id="header-search-button">
-						<img class="fixed-search-icon" alt="Search"
+						<a href="http://192.168.0.61:8098/hongdangmu/goods/boardList.do"> <img class="fixed-search-icon" alt="Search"
 							src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/header/search-icon-db20a2e9e6b0fc922b44982d451cf1c967c86e8e8df270e71c300832a6f31f1a.svg" />
+						</a>
 					</button>
 				</div>
 			</section>
@@ -187,68 +183,7 @@
 					</a>
 				</h3>
 				<ul id="top-keywords-list">
-					<!-- <li>
-              <a href="/search/%EC%9E%90%EC%A0%84%EA%B1%B0">
-              <a href="#">
-                <p class="keyword-text">자전거</p>
-                <p class="rank">
-                        <span class="changed_rank">-</span>
-                </p>
-</a>            </li>
-            <li>
-              <a href="/search/%EB%83%89%EC%9E%A5%EA%B3%A0">
-              <a href="#">
-                <p class="keyword-text">냉장고</p>
-                <p class="rank">
-                      <span class="up">▲</span>
-                      <span class="changed_rank">1</span>
-                </p>
-</a>            </li>
-            <li>
-              <a href="/search/%EC%97%90%EC%96%B4%EC%BB%A8">
-              <a href="#">
-                <p class="keyword-text">에어컨</p>
-                <p class="rank">
-                      <span class="down">▼</span>
-                      <span class="changed_rank">1</span>
-                </p>
-</a>            </li>
-            <li>
-              <a href="/search/%EC%87%BC%ED%8C%8C">
-              <a href="#">
-                <p class="keyword-text">쇼파</p>
-                <p class="rank">
-                      <span class="up">▲</span>
-                      <span class="changed_rank">1</span>
-                </p>
-</a>            </li>
-            <li>
-              <a href="/search/%EC%9D%98%EC%9E%90">
-              <a href="#">
-                <p class="keyword-text">의자</p>
-                <p class="rank">
-                      <span class="down">▼</span>
-                      <span class="changed_rank">1</span>
-                </p>
-</a>            </li>
-            <li>
-              <a href="/search/%EA%B0%80%EB%B0%A9">
-              <a href="#">
-                <p class="keyword-text">가방</p>
-                <p class="rank">
-                      <span class="down">▼</span>
-                      <span class="changed_rank">3</span>
-                </p>
-</a>            </li>
-            <li>
-              <a href="/search/%EC%8B%9C%EA%B3%84">
-              <a href="#">
-                <p class="keyword-text">시계</p>
-                <p class="rank">
-                      <span class="up">▲</span>
-                      <span class="changed_rank">1</span>
-                </p>
-</a>            </li> -->
+
 				</ul>
 			</section>
 		</div>
@@ -257,220 +192,7 @@
 	<section id="hot-articles">
 		<h3>홍당무마켓 인기 매물</h3>
 		<div class="title-line-divider"></div>
-		<section class="cards-wrap">
-			<!--<article class="card-top ">
-				<a class="card-link " data-event-label="36655534" href="/articles/36655534">
-				<a class="card-link " data-event-label="36655534" href="#">
-					<div class="card-photo">
-						<img alt="전자렌지"
-							src="https://dnvefa72aowie.cloudfront.net/origin/article/201908/0131e6c68cdd4f2b4f32358873436b6a88a3ae2c93b945d08e23f64135f44014.jpg?q=82&amp;s=300x300&amp;t=crop" />
-					</div>
-					<div class="card-desc">
-						<h2 class="card-title">전자렌지</h2>
-						<div class="card-region-name">충남 천안시 동남구 청당동</div>
-						<div class="card-price ">15,000원</div>
-						<div class="card-counts">
-							<span> 관심 5 </span> ∙ <span> 댓글 1 </span> ∙ <span> 채팅 32 </span>
-						</div>
-					</div>
-				</a>
-			</article>
-			<article class="card-top ">
-				<a class="card-link " data-event-label="36637412" href="/articles/36637412">
-				<a class="card-link " data-event-label="36637412" href="#">
-					<div class="card-photo">
-						<img alt="이케아 편안한 독서의자 무료나눔"
-							src="https://dnvefa72aowie.cloudfront.net/origin/article/201908/060ED745AE42920F03B2E5645B3350FEBAF75CB79E0383280149E790F14FB7DD.jpg?q=82&amp;s=300x300&amp;t=crop" />
-					</div>
-					<div class="card-desc">
-						<h2 class="card-title">이케아 편안한 독서의자 무료나눔</h2>
-						<div class="card-region-name">서울 노원구 상계5동</div>
-						<div class="card-price ">무료나눔</div>
-						<div class="card-counts">
-							<span> 관심 12 </span> ∙ <span> 댓글 0 </span> ∙ <span> 채팅 29
-							</span>
-						</div>
-					</div>
-				</a>
-			</article>
-			<article class="card-top ">
-				<a class="card-link " data-event-label="36653780" href="/articles/36653780">
-				<a class="card-link " data-event-label="36653780" href="#">
-					<div class="card-photo">
-						<img alt="자전거 팝니다"
-							src="https://dnvefa72aowie.cloudfront.net/origin/article/201908/3C37E33486B45C583223F7F7AAD9EFB5525E245E92A63E3E694C92CA613E4283.jpg?q=82&amp;s=300x300&amp;t=crop" />
-					</div>
-					<div class="card-desc">
-						<h2 class="card-title">자전거 팝니다</h2>
-						<div class="card-region-name">서울 송파구 잠실6동</div>
-						<div class="card-price ">50,000원</div>
-						<div class="card-counts">
-							<span> 관심 21 </span> ∙ <span> 댓글 2 </span> ∙ <span> 채팅 24
-							</span>
-						</div>
-					</div>
-				</a>
-			</article>
-			<article class="card-top ">
-				<a class="card-link " data-event-label="36195544" href="/articles/36195544">
-				<a class="card-link " data-event-label="36660275" href="#">
-					<div class="card-photo">
-						<img alt="도시락용 종이 봉투"
-							src="https://dnvefa72aowie.cloudfront.net/origin/article/201908/7D0D08AD8C2EE2C43A028D50073420CE8D09B1EB6E56C2DD97972DFFBD377FD3.jpg?q=82&amp;s=300x300&amp;t=crop" />
-					</div>
-					<div class="card-desc">
-						<h2 class="card-title">도시락용 종이 봉투</h2>
-						<div class="card-region-name">경기도 고양시 일산동구 정발산동</div>
-						<div class="card-price ">무료나눔</div>
-						<div class="card-counts">
-							<span> 관심 47 </span> ∙ <span> 댓글 9 </span> ∙ <span> 채팅 102
-							</span>
-						</div>
-					</div>
-				</a>
-			</article>
-			<article class="card-top ">
-				<a class="card-link " data-event-label="36660275" href="/articles/36660275">
-				<a class="card-link " data-event-label="36660275" href="#">
-					<div class="card-photo">
-						<img alt="엔틱책상"
-							src="https://dnvefa72aowie.cloudfront.net/origin/article/201908/33bfa11da10e9363912ad1f9d5c61426b837ed49f7882e3b9589e36ecc497f72.jpg?q=82&amp;s=300x300&amp;t=crop" />
-					</div>
-					<div class="card-desc">
-						<h2 class="card-title">엔틱책상</h2>
-						<div class="card-region-name">경남 창원시 마산회원구 양덕2동</div>
-						<div class="card-price blank-price">-</div>
-						<div class="card-counts">
-							<span> 관심 5 </span> ∙ <span> 댓글 0 </span> ∙ <span> 채팅 18 </span>
-						</div>
-					</div>
-				</a>
-			</article>
-			<article class="card-top ">
-				<a class="card-link " data-event-label="36600076" href="/articles/36600076">
-				<a class="card-link " data-event-label="36600076" href="#">
-					<div class="card-photo">
-						<img alt="TV 판매해요"
-							src="https://dnvefa72aowie.cloudfront.net/origin/article/201908/8a630612acb3ccde5821b00de15dda6c7f8f77c74a675be05bb34f44e7a5a734.jpg?q=82&amp;s=300x300&amp;t=crop" />
-					</div>
-					<div class="card-desc">
-						<h2 class="card-title">TV 판매해요</h2>
-						<div class="card-region-name">강원도 원주시 원동</div>
-						<div class="card-price blank-price">-</div>
-						<div class="card-counts">
-							<span> 관심 10 </span> ∙ <span> 댓글 0 </span> ∙ <span> 채팅 30
-							</span>
-						</div>
-					</div>
-				</a>
-			</article>
-			<article class="card-top ">
-				<a class="card-link " data-event-label="36648630" href="/articles/36648630">
-				<a class="card-link " data-event-label="36648630" href="#">
-					<div class="card-photo">
-						<img alt="전자피아노"
-							src="https://dnvefa72aowie.cloudfront.net/origin/article/201908/df3e21229fc1f356fde02aa036250def9b4cf9e5402c60e91094b09adc4693b7.jpg?q=82&amp;s=300x300&amp;t=crop" />
-					</div>
-					<div class="card-desc">
-						<h2 class="card-title">전자피아노</h2>
-						<div class="card-region-name">전북 전주시 완산구 삼천동1가</div>
-						<div class="card-price ">5,000원</div>
-						<div class="card-counts">
-							<span> 관심 15 </span> ∙ <span> 댓글 0 </span> ∙ <span> 채팅 17
-							</span>
-						</div>
-					</div>
-				</a>
-			</article>
-			<article class="card-top ">
-				<a class="card-link " data-event-label="36501388" href="/articles/36501388">
-				<a class="card-link " data-event-label="36501388" href="#">
-					<div class="card-photo">
-						<img alt="전자렝지 화장대 서랍장 옷장2개 침대2인용 냉장고 접이식 수납겸 식탁 화장대 팝니다"
-							src="https://dnvefa72aowie.cloudfront.net/origin/article/201908/33F8D3FD379B4BE04ED30C18CE003F09B5AB34402E38B86E90FF11DF5C0C6602.jpg?q=82&amp;s=300x300&amp;t=crop" />
-					</div>
-					<div class="card-desc">
-						<h2 class="card-title">전자렝지 화장대 서랍장 옷장2개 침대2인용 냉장고 접이식 수납겸 식탁
-							화장대 팝니다</h2>
-						<div class="card-region-name">충북 청주시 상당구 용암1동</div>
-						<div class="card-price blank-price">-</div>
-						<div class="card-counts">
-							<span> 관심 18 </span> ∙ <span> 댓글 10 </span> ∙ <span> 채팅 75
-							</span>
-						</div>
-					</div>
-				</a>
-			</article>
-		</section>
-		<div id="hot-articles-nanum-wrap">
-			<section class="cards-wrap">
-				<article class="card-top ">
-					<a class="card-link " data-event-label="36658019" href="/articles/36658019">
-					<a class="card-link " data-event-label="36658019" href="#">
-						<div class="card-photo">
-							<img alt="협탁 무료나눔합니다."
-								src="https://dnvefa72aowie.cloudfront.net/origin/article/201908/0cda7b57ad5feb42d7ae47aeafe61e04bd05993b6f1ed886c62cf36401d671fe.jpg?q=82&amp;s=300x300&amp;t=crop" />
-						</div>
-						<div class="card-desc">
-							<h2 class="card-title">협탁 무료나눔합니다.</h2>
-							<div class="card-region-name">광주 광산구 신창동</div>
-							<div class="card-price ">무료나눔</div>
-							<div class="card-counts">
-								<span> 관심 2 </span> ∙ <span> 댓글 0 </span> ∙ <span> 채팅 8 </span>
-							</div>
-						</div>
-					</a>
-				</article>
-				<article class="card-top ">
-					<a class="card-link " data-event-label="36658051" href="/articles/36658051">
-					<a class="card-link " data-event-label="36658051" href="#">
-						<div class="card-photo">
-							<img alt="필요하신분"
-								src="https://dnvefa72aowie.cloudfront.net/origin/article/201908/5bfdf5b686c41ae10138ce419069d01537bf823459e038e37604db31363b1478.jpg?q=82&amp;s=300x300&amp;t=crop" />
-						</div>
-						<div class="card-desc">
-							<h2 class="card-title">필요하신분</h2>
-							<div class="card-region-name">제주 제주시 외도동</div>
-							<div class="card-price ">무료나눔</div>
-							<div class="card-counts">
-								<span> 관심 4 </span> ∙ <span> 댓글 0 </span> ∙ <span> 채팅 8 </span>
-							</div>
-						</div>
-					</a>
-				</article>
-				<article class="card-top ">
-					<a class="card-link " data-event-label="36617013" href="/articles/36617013">
-					<a class="card-link " data-event-label="36617013" href="#">
-						<div class="card-photo">
-							<img alt="가구들"
-								src="https://dnvefa72aowie.cloudfront.net/origin/article/201908/e54cea070594939669f9be8e08b410d284da13544704df342a0e64d3d2616708.jpg?q=82&amp;s=300x300&amp;t=crop" />
-						</div>
-						<div class="card-desc">
-							<h2 class="card-title">가구들</h2>
-							<div class="card-region-name">강원도 원주시 단계동</div>
-							<div class="card-price ">무료나눔</div>
-							<div class="card-counts">
-								<span> 관심 4 </span> ∙ <span> 댓글 0 </span> ∙ <span> 채팅 14
-								</span>
-							</div>
-						</div>
-					</a>
-				</article>
-				<div class="card-top " id="cards-more">
-					<a class="card-link" href="/hot_articles">
-						<div id="cards-more-text">
-							<img alt="+"
-								src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/mobile/icon-add-dcfb7aac98f18d19ca4c27e9dc29c63cf73861f3b10e0a42c06163d2658d0691.svg" />
-							<div id="more-text">
-								홍당무마켓<br />인기 매물<br />더 보기
-							</div>
-						</div>
-					</a>
-				</div> 
-
-			</section>
-		</div>-->
-		</section>
+		<section class="cards-wrap"></section>
 
 		<section id="introduction">
 			<h3>홍당무마켓은 이런 점이 달라요!</h3>
